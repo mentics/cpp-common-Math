@@ -7,3 +7,4 @@ ipch
 **/*.filters
 .vs
 **/*.dll
+**/*.lib
