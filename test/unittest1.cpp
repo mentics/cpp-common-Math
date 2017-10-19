@@ -9,7 +9,7 @@ namespace NetworkTest
 	{
 	public:
 		
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(TestTODO)
 		{
 			// TODO: Your test code here
 		}
