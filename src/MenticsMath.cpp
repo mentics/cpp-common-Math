@@ -13,7 +13,7 @@ void testGrad(std::string name, int m, mfunc2 f, std::vector<double> at, double 
 	std::vector<double> valueAt(m);
 	f(m, valueAt.data(), 8, around.data(), gradAt.data(), data);
 	for (int i = 0; i < at.size(); i++) {
-		memcpy((void*)around.data(), (void*)at.data(), sizeof(double) * 8);
+		memcpy(around.data(), at.data(), sizeof(double) * 8);
 		around[i] = around[i] - dx / 2.0;
 		std::vector<double> valueBack(m);
 		f(m, valueBack.data(), 8, around.data(), empty.data(), data);
@@ -33,14 +33,14 @@ void testGrad(std::string name, vfunc2 f, std::vector<double> &at, double dx, do
 	std::vector<double> empty(8);
 	std::vector<double> around(at);
 	std::vector<double> gradAt(at.size());
-	double valueAt = f(around, gradAt, data);
+	const double valueAt = f(around, gradAt, data);
 	for (int i = 0; i < at.size(); i++) {
-		memcpy((void*)around.data(), (void*)at.data(), sizeof(double) * 8);
+		memcpy(around.data(), at.data(), sizeof(double) * 8);
 		around[i] = around[i] - dx / 2.0;
-		double valueBack = f(around, empty, data);
+		const double valueBack = f(around, empty, data);
 		around[i] = around[i] + dx;
-		double valueForward = f(around, empty, data);
-		double gradShouldBe = (valueForward - valueBack) / dx;
+		const double valueForward = f(around, empty, data);
+		const double gradShouldBe = (valueForward - valueBack) / dx;
 		if (!isSimilar(gradAt[i], gradShouldBe, eps)) {
 			printf("Compare failed for %s grad at[%d] %g was %g and calculated to be %g\n", name.c_str(), i, at[i], gradAt[i], gradShouldBe);
 		}
