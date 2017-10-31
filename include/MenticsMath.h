@@ -7,6 +7,8 @@
 #include "Eigen/Core"
 #include "nlopt/nlopt.hpp"
 
+namespace MenticsGame {
+
 extern std::function<double()> nextDouble;
 
 template <int SIZE>
@@ -37,3 +39,5 @@ inline vect3 randomVector(double scale) {
 
 void testGrad(std::string name, int m, mfunc2 f, std::vector<double> at, double dx, double eps, void* data);
 void testGrad(std::string name, vfunc2 f, std::vector<double> &at, double dx, double eps, void* data);
+
+}

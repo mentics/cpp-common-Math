@@ -2,6 +2,8 @@
 
 #include "MenticsMath.h"
 
+namespace MenticsGame {
+
 std::default_random_engine generator;
 std::uniform_real_distribution<double> distribution(-1, 1);
 std::function<double()> nextDouble = std::bind(distribution, generator);
@@ -45,4 +47,6 @@ void testGrad(std::string name, vfunc2 f, std::vector<double> &at, double dx, do
 			printf("Compare failed for %s grad at[%d] %g was %g and calculated to be %g\n", name.c_str(), i, at[i], gradAt[i], gradShouldBe);
 		}
 	}
+}
+
 }
