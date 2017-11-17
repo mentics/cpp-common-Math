@@ -112,7 +112,7 @@
       <AdditionalLibraryDirectories>C:\app\dev\cpp\boost_1_64_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)*.dll" "$(OutDir)"</Command>
+      <Command>copy "$(SolutionDir)lib\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -168,13 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
-    <None Include="libnlopt-0.dll">
-      <FileType>Document</FileType>
-    </None>
     <None Include="test\MathTest.vcxproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="libnlopt.lib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\common\Common.vcxproj">
