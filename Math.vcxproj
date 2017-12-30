@@ -114,6 +114,9 @@
     <PostBuildEvent>
       <Command>copy "$(SolutionDir)lib\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>libnlopt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

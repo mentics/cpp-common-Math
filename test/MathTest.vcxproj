@@ -43,7 +43,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <UseOfMfc>false</UseOfMfc>
     <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -113,6 +112,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;C:\app\dev\cpp\boost_1_64_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libnlopt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -155,10 +155,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="unittest1.cpp" />
+    <ClCompile Include="unittest2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\common\Common.vcxproj">
       <Project>{a1cea56a-2f14-4457-b2b1-bfb7c2c02c56}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Math.vcxproj">
+      <Project>{8bf9d5da-2a1e-4817-8604-3aa7801ffa1f}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

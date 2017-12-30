@@ -14,6 +14,7 @@ extern std::function<double()> nextDouble;
 template <int SIZE>
 using vector = Eigen::Matrix<double, SIZE, 1>;
 using vect3 = Eigen::Vector3d;
+using vect4 = Eigen::Vector4d;
 using vect8 = vector<8>;
 using mat3x8 = Eigen::Matrix<double, 3, 8>;
 
