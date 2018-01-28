@@ -1,11 +1,12 @@
-#include "stdafx.h"
-#include "CppUnitTest.h"
-
-#include "MenticsCommon.h"
-#include "MenticsCommonTest.h"
-#include "MenticsMath.h"
+#include "../../common/include/stdafx.h"
+#include "../../common/include/MenticsCommon.h"
+#include "../../common/include/MenticsCommonTest.h"
+#include "../../math/include/MenticsMath.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+
+#include <spdlog/spdlog.h>
+#include <sstream>
 
 namespace MathTest
 {		
@@ -27,9 +28,8 @@ namespace MathTest
 
 	TEST_CLASS(UnitTest1)
 	{
-		boost::log::sources::severity_logger<boost::log::trivial::severity_level> lg;
 		const std::string name = "PhysicsTest";
-	
+		
 		TEST_CLASS_INITIALIZE(BeforeClass) {
 			setupLog();
 		}
@@ -37,6 +37,7 @@ namespace MathTest
 		const double CLOSE_ENOUGH = 1e-2;
 
 		double solve(std::vector<double>& x, ProblemData const& data) {
+			const auto m_log = spdlog::stdout_logger_mt("unique_name");
 			nlopt::opt opt(nlopt::LD_SLSQP, 4);
 			opt.set_min_objective(diffEqError, (void*)(&data));
 			std::vector<double> lowerBound = { -10, -10, -10, -10 };
@@ -60,14 +61,16 @@ namespace MathTest
 				double minf;
 				try {
 					const nlopt::result result = opt.optimize(x, minf);
-					LOG(lvl::debug) << "iteration " << iterations << " funcCalls=" << funcCalls << std::endl;
+					// debug ("iteration " << iterations << " funcCalls=" << funcCalls << std::endl;
 					if (result < 0) {
-						LOG(lvl::warning) << "nlopt failed!";
+						m_log->warn("nlopt failed!");
 					}
 					else {
 						const double error = checkError(x, data);
 						if (error > CLOSE_ENOUGH) {
-							LOG(lvl::warning) << "Checked error failure: " << result << std::endl;
+							
+
+							m_log->warn("Checked error failure: {0} \n", result);
 							continue;
 						}
 						else {
@@ -78,12 +81,12 @@ namespace MathTest
 					}
 				}
 				catch (const std::exception& e) {
-					LOG(lvl::debug) << "iteration " << iterations << " funcCalls=" << funcCalls << " (nlopt exception: " << e.what() << ")" << std::endl;
+					m_log->debug("iteration {0} {1} {2} {3} {4} {5} {6} \n", iterations," funcCalls=",funcCalls," (nlopt exception: ",e.what(),")");
 					const double error = checkError(x, data);
 					if (error > CLOSE_ENOUGH) {
 					}
 					else {
-						LOG(lvl::warning) << "Exception but constraints satisfied" << std::endl;
+						m_log->warn("Exception but constraints satisfied\n");
 						found = true;
 					}
 					continue;

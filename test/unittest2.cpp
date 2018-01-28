@@ -1,9 +1,9 @@
-#include "stdafx.h"
+#include "../../common/include/stdafx.h"
 #include "CppUnitTest.h"
 
-#include "MenticsCommon.h"
-#include "MenticsCommonTest.h"
-#include "MenticsMath.h"
+#include "../../common/include/MenticsCommon.h"
+#include "../../common/include/MenticsCommonTest.h"
+#include "../../math/include/MenticsMath.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -36,7 +36,7 @@ namespace MathTest2
 
 	TEST_CLASS(UnitTest2)
 	{
-		boost::log::sources::severity_logger<boost::log::trivial::severity_level> lg;
+		
 		const std::string name = "PhysicsTest";
 
 		TEST_CLASS_INITIALIZE(BeforeClass) {
@@ -44,6 +44,7 @@ namespace MathTest2
 		}
 
 		double solve(std::vector<double>& x, ProblemData& data) {
+			const auto m_log = spdlog::stdout_logger_mt("unique_name 2");
 			nlopt::opt opt(nlopt::LD_SLSQP, NUMPARAMS);
 			opt.set_min_objective(diffEqError, (void*)(&data));
 			std::vector<double> lowerBound(NUMPARAMS);
@@ -74,14 +75,14 @@ namespace MathTest2
 						bestOptVal = optVal;
 						bestX = x;
 					}
-					LOG(lvl::debug) << "iteration " << iterations << " funcCalls=" << funcCalls << std::endl;
+					m_log->debug("iteration {0} {1} {3} \n",iterations," funcCalls=",funcCalls );
 					if (result < 0) {
-						LOG(lvl::warning) << "nlopt failed!";
+						m_log->warn("nlopt failed!");
 					}
 					else {
 						const double error = checkError(x.data(), data);
 						if (error > CLOSE_ENOUGH) {
-							LOG(lvl::warning) << "Checked error failure: " << result << std::endl;
+							m_log->warn("Checked error failure: {0} \n", result);
 							continue;
 						}
 						else {
@@ -92,12 +93,12 @@ namespace MathTest2
 					}
 				}
 				catch (const std::exception& e) {
-					LOG(lvl::debug) << "iteration " << iterations << " funcCalls=" << funcCalls << " (nlopt exception: " << e.what() << ")" << std::endl;
+					m_log->debug("iteration {0} {1} {2} {3} {5}) \n",iterations, " funcCalls=", funcCalls, " (nlopt exception: ", e.what());
 					const double error = checkError(x.data(), data);
 					if (error > CLOSE_ENOUGH) {
 					}
 					else {
-						LOG(lvl::warning) << "Exception but constraints satisfied" << std::endl;
+						m_log->warn("Exception but constraints satisfied\n");
 						found = true;
 					}
 					continue;
@@ -150,6 +151,7 @@ namespace MathTest2
 		
 		TEST_METHOD(DiffEqError2)
 		{
+			const auto m_log = spdlog::stdout_logger_mt("unique_name 3");
 			ProblemData data{ 1.0, 0.0, 0.0, 1.0, TIMES };
 			std::vector<double> x(NUMPARAMS);
 
@@ -159,7 +161,7 @@ namespace MathTest2
 			std::vector<double> res { 1.0, 0.0, x[0], x[1] };
 			CandidateFunction result(res);
 			if (bestOptVal < 100) {
-				LOG(lvl::debug) << bestOptVal;
+				m_log->debug(bestOptVal);
 			}
 			Assert::IsTrue(result.ddat(0) < 0);
 		}
