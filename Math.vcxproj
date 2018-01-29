@@ -114,10 +114,11 @@
       <AdditionalLibraryDirectories>C:\app\dev\cpp\boost_1_64_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)lib\*.dll" "$(OutDir)"</Command>
+      <Command>copy "$(SolutionDir)lib\nlopt\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>libnlopt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libnlopt-64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\nlopt;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
