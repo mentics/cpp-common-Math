@@ -4,7 +4,7 @@
 #include <random>
 #include <functional>
 
-#include "Eigen/Core"
+#include "Eigen"
 #include "nlopt/nlopt.hpp"
 
 namespace MenticsGame {

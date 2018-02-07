@@ -1,7 +1,7 @@
-#include "../../common/include/stdafx.h"
-#include "../../common/include/MenticsCommon.h"
-#include "../../common/include/MenticsCommonTest.h"
-#include "../../math/include/MenticsMath.h"
+#include "stdafx.h"
+#include "MenticsCommon.h"
+#include "MenticsCommonTest.h"
+#include "MenticsMath.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
