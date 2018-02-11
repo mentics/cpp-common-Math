@@ -37,7 +37,6 @@ namespace MathTest
 		const double CLOSE_ENOUGH = 1e-2;
 
 		double solve(std::vector<double>& x, ProblemData const& data) {
-			const auto m_log = spdlog::stdout_logger_mt("unique_name");
 			nlopt::opt opt(nlopt::LD_SLSQP, 4);
 			opt.set_min_objective(diffEqError, (void*)(&data));
 			std::vector<double> lowerBound = { -10, -10, -10, -10 };

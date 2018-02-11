@@ -44,7 +44,6 @@ namespace MathTest2
 		}
 
 		double solve(std::vector<double>& x, ProblemData& data) {
-			const auto m_log = spdlog::stdout_logger_mt("unique_name 2");
 			nlopt::opt opt(nlopt::LD_SLSQP, NUMPARAMS);
 			opt.set_min_objective(diffEqError, (void*)(&data));
 			std::vector<double> lowerBound(NUMPARAMS);
@@ -151,7 +150,6 @@ namespace MathTest2
 		
 		TEST_METHOD(DiffEqError2)
 		{
-			const auto m_log = spdlog::stdout_logger_mt("unique_name 3");
 			ProblemData data{ 1.0, 0.0, 0.0, 1.0, TIMES };
 			std::vector<double> x(NUMPARAMS);
 
