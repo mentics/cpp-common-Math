@@ -8,20 +8,6 @@ std::default_random_engine generator;
 std::uniform_real_distribution<double> distribution(-1, 1);
 std::function<double()> nextDouble = std::bind(distribution, generator);
 
-inline bool isSimilar(double x1, double x2, double eps) {
-	const double sum = x1 + x2;
-	if (sum < eps) {
-		return true;
-	}
-	else {
-		return abs(x1 - x2) / sum < eps;
-	}
-}
-
-inline vect3 randomVector(double scale) {
-	return vect3(nextDouble() * scale, nextDouble() * scale, nextDouble() * scale);
-}
-
 void testGrad(std::string name, int m, mfunc2 f, std::vector<double> at, double dx, double eps, void* data) {
 	std::vector<double> empty(m*at.size());
 	std::vector<double> around(at);
