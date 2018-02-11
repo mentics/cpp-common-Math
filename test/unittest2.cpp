@@ -150,7 +150,7 @@ namespace MathTest2
 		
 		TEST_METHOD(DiffEqError2)
 		{
-			ProblemData data{ 1.0, 0.0, 0.0, 1.0, TIMES };
+			ProblemData data{ static_cast<int>(1.0), static_cast<int>(0.0), static_cast<int>(0.0), static_cast<int>(1.0), static_cast<int>(TIMES) };
 			std::vector<double> x(NUMPARAMS);
 
 			bool found = solve(x, data);
