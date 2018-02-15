@@ -3,7 +3,9 @@
 
 #include "MenticsCommon.h"
 #include "MenticsCommonTest.h"
+#include "Eigen\Eigen"
 #include "MenticsMath.h"
+
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
