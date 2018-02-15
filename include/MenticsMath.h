@@ -1,11 +1,8 @@
 #pragma once
 
-#include <vector>
-#include <random>
-#include <functional>
 
-#include "Eigen/Eigen"     
-#include "nlopt/nlopt.hpp"
+
+#include "Eigen/Core"     
 
 namespace MenticsGame {
 

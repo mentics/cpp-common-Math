@@ -1,5 +1,9 @@
 #include "stdafx.h"
 
+#include <vector>
+#include <random>
+#include <functional>
+#include "nlopt/nlopt.hpp"
 #include "MenticsMath.h"
 
 namespace MenticsGame {
