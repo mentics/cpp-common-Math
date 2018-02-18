@@ -74,14 +74,14 @@ namespace MathTest2
 						bestOptVal = optVal;
 						bestX = x;
 					}
-					m_log->debug("iteration {0} {1} {3} \n",iterations," funcCalls=",funcCalls );
+					log->debug("iteration {0} {1} {3} \n",iterations," funcCalls=",funcCalls );
 					if (result < 0) {
-						m_log->warn("nlopt failed!");
+						log->warn("nlopt failed!");
 					}
 					else {
 						const double error = checkError(x.data(), data);
 						if (error > CLOSE_ENOUGH) {
-							m_log->warn("Checked error failure: {0} \n", result);
+							log->warn("Checked error failure: {0} \n", result);
 							continue;
 						}
 						else {
@@ -92,12 +92,12 @@ namespace MathTest2
 					}
 				}
 				catch (const std::exception& e) {
-					m_log->debug("iteration {0} {1} {2} {3} {5}) \n",iterations, " funcCalls=", funcCalls, " (nlopt exception: ", e.what());
+					log->debug("iteration {0} {1} {2} {3} {5}) \n",iterations, " funcCalls=", funcCalls, " (nlopt exception: ", e.what());
 					const double error = checkError(x.data(), data);
 					if (error > CLOSE_ENOUGH) {
 					}
 					else {
-						m_log->warn("Exception but constraints satisfied\n");
+						log->warn("Exception but constraints satisfied\n");
 						found = true;
 					}
 					continue;
@@ -159,7 +159,7 @@ namespace MathTest2
 			std::vector<double> res { 1.0, 0.0, x[0], x[1] };
 			CandidateFunction result(res);
 			if (bestOptVal < 100) {
-				m_log->debug(bestOptVal);
+				log->debug(bestOptVal);
 			}
 			Assert::IsTrue(result.ddat(0) < 0);
 		}

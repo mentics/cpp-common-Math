@@ -62,14 +62,14 @@ namespace MathTest
 					const nlopt::result result = opt.optimize(x, minf);
 					// debug ("iteration " << iterations << " funcCalls=" << funcCalls << std::endl;
 					if (result < 0) {
-						m_log->warn("nlopt failed!");
+						log->warn("nlopt failed!");
 					}
 					else {
 						const double error = checkError(x, data);
 						if (error > CLOSE_ENOUGH) {
 							
 
-							m_log->warn("Checked error failure: {0} \n", result);
+							log->warn("Checked error failure: {0} \n", result);
 							continue;
 						}
 						else {
@@ -80,12 +80,12 @@ namespace MathTest
 					}
 				}
 				catch (const std::exception& e) {
-					m_log->debug("iteration {0} {1} {2} {3} {4} {5} {6} \n", iterations," funcCalls=",funcCalls," (nlopt exception: ",e.what(),")");
+					log->debug("iteration {0} {1} {2} {3} {4} {5} {6} \n", iterations," funcCalls=",funcCalls," (nlopt exception: ",e.what(),")");
 					const double error = checkError(x, data);
 					if (error > CLOSE_ENOUGH) {
 					}
 					else {
-						m_log->warn("Exception but constraints satisfied\n");
+						log->warn("Exception but constraints satisfied\n");
 						found = true;
 					}
 					continue;
