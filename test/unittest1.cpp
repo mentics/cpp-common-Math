@@ -63,14 +63,14 @@ namespace MenticsGame {
 						const nlopt::result result = opt.optimize(x, minf);
 						// debug ("iteration " << iterations << " funcCalls=" << funcCalls << std::endl;
 						if (result < 0) {
-							log->warn("nlopt failed!");
+							mlog->warn("nlopt failed!");
 						}
 						else {
 							const double error = checkError(x, data);
 							if (error > CLOSE_ENOUGH) {
 
 
-								log->warn("Checked error failure: {0} \n", result);
+								mlog->warn("Checked error failure: {0} \n", result);
 								continue;
 							}
 							else {
@@ -81,12 +81,12 @@ namespace MenticsGame {
 						}
 					}
 					catch (const std::exception& e) {
-						log->debug("iteration {0} {1} {2} {3} {4} {5} {6} \n", iterations, " funcCalls=", funcCalls, " (nlopt exception: ", e.what(), ")");
+						mlog->debug("iteration {0} {1} {2} {3} {4} {5} {6} \n", iterations, " funcCalls=", funcCalls, " (nlopt exception: ", e.what(), ")");
 						const double error = checkError(x, data);
 						if (error > CLOSE_ENOUGH) {
 						}
 						else {
-							log->warn("Exception but constraints satisfied\n");
+							mlog->warn("Exception but constraints satisfied\n");
 							found = true;
 						}
 						continue;
