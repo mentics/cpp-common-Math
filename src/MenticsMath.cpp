@@ -53,5 +53,10 @@ void testGrad(std::string name, vfunc2 f, std::vector<double> &at, double dx, do
 	}
 }
 
+glm::vec3 toGlm(vect3 v)
+{
+	return glm::vec3(v.x(), v.y(), v.z());	
+}
+
 
 }
