@@ -4,6 +4,7 @@
 
 #include "Eigen/Core"     
 #include "glm/glm.hpp"
+#include "MenticsCommon.h"
 
 namespace MenticsGame {
 
@@ -33,7 +34,9 @@ inline bool isSimilar(double x1, double x2, double eps) {
 }
 
 inline vect3 randomVector(double scale) {
-	return vect3(nextDouble() * scale, nextDouble() * scale, nextDouble() * scale);
+	vect3 v(vect3(static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / scale)), static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / scale)), static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / scale))));
+		mlog->info("constructed a vector : ({0},{1},{2})",v.x(), v.y(), v.z() );
+		return v;
 }
 
 void testGrad(std::string name, int m, mfunc2 f, std::vector<double> at, double dx, double eps, void* data);
