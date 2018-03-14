@@ -35,7 +35,7 @@ inline bool isSimilar(double x1, double x2, double eps) {
 
 inline vect3 randomVector(double scale) {
 	vect3 v(vect3(static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / scale)), static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / scale)), static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / scale))));
-		mlog->info("constructed a vector : ({0},{1},{2})",v.x(), v.y(), v.z() );
+		
 		return v;
 }
 
