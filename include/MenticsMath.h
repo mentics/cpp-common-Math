@@ -42,6 +42,5 @@ inline vect3 randomVector(double scale) {
 void testGrad(std::string name, int m, mfunc2 f, std::vector<double> at, double dx, double eps, void* data);
 void testGrad(std::string name, vfunc2 f, std::vector<double> &at, double dx, double eps, void* data);
 
-glm::vec3 toGlm(vect3 v); 
 
 }
