@@ -3,7 +3,6 @@
 
 
 #include "Eigen/Core"     
-#include "glm/glm.hpp"
 #include "MenticsCommon.h"
 
 namespace MenticsGame {
