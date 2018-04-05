@@ -33,9 +33,7 @@ inline bool isSimilar(double x1, double x2, double eps) {
 }
 
 inline vect3 randomVector(double scale) {
-	vect3 v(vect3(static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / scale)), static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / scale)), static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / scale))));
-		
-		return v;
+	return vect3(nextDouble() * scale, nextDouble() * scale, nextDouble() * scale);
 }
 
 void testGrad(std::string name, int m, mfunc2 f, std::vector<double> at, double dx, double eps, void* data);
